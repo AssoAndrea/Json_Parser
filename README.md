@@ -11,6 +11,9 @@ a 3-header library for parse JSON file and interrogate it
 **Open JSON file**<br>
 JsonOpen(char* JsonPath);
 
+**Close JSON file**<br>
+JsonClose(char* JsonPath);
+
 **Create a JSON object**<br>
 JsonObj* obj = JsonCreateObj(char* rawJsonData);
 
