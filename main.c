@@ -8,12 +8,6 @@
 #define RES_PATH "../x64/Debug/res/"
 
 
-struct mySt
-{
-	char name[10];             /* key (string is WITHIN the structure) */
-	int id;
-	UT_hash_handle hh;
-};
 
 int main()
 {

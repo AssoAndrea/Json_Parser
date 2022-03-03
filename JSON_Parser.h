@@ -39,11 +39,12 @@ typedef struct JsonObj
 
 
 
-JsonObj* __parseObj(char* data);
-void __processKv(char* kv, JsonObj* obj);
-void __DictDestroyObj(JsonObj* obj);
+static JsonObj* __parseObj(char* data);
 
-void __isolateVal(char** str)
+static void __processKv(char* kv, JsonObj* obj);
+static void __DictDestroyObj(JsonObj* obj);
+
+static void __isolateVal(char** str)
 {
 	if (strchr(*str, ((int)'[')) || strchr(*str, ((int)'{')))
 	{
@@ -60,7 +61,7 @@ void __isolateVal(char** str)
 
 }
 
-char* __isolateString(char* str)
+static char* __isolateString(char* str)
 {
 
 	char* sPtr = strchr(str, ((int)'"'));
@@ -78,7 +79,7 @@ char* __isolateString(char* str)
 
 
 
-int __reformatObj(char* str)
+static int __reformatObj(char* str)
 {
 
 	int len = strlen(str);
@@ -130,7 +131,7 @@ static JsonDict* JsonGetDictItem(JsonObj* obj,char* key)
 }
 
 
-char* __jsonMakeOneLine(const char* content)
+static char* __jsonMakeOneLine(const char* content)
 {
 	int nObj = 0;
 	int len = strlen(content);
@@ -177,7 +178,7 @@ char* __jsonMakeOneLine(const char* content)
 	return finalString;
 }
 
-void __isolateKv(char** kv)
+static void __isolateKv(char** kv)
 {
 	char* ptr = strrchr(*kv, ((int)'}'));
 	if (ptr && !strchr(ptr,((int)']')))
@@ -191,7 +192,7 @@ void __isolateKv(char** kv)
 	}
 }
 
-void __isolateArr(char** arr)
+static void __isolateArr(char** arr)
 {
 	if (strchr(*arr, ((int)'[')))
 	{
@@ -206,7 +207,7 @@ void __isolateArr(char** arr)
 
 }
 
-dArr* __processArray(char* arr)
+static dArr* __processArray(char* arr)
 {
 
 	int numberOfElement = __reformatObj(arr);
@@ -266,7 +267,7 @@ dArr* __processArray(char* arr)
 
 }
 
-void __processKv(char* kv, JsonObj* obj)
+static void __processKv(char* kv, JsonObj* obj)
 {
 
 	JsonDict* toAdd = malloc(sizeof(JsonDict));
@@ -326,7 +327,7 @@ void __processKv(char* kv, JsonObj* obj)
 
 }
 
-JsonObj* __parseObj(char* data)
+static JsonObj* __parseObj(char* data)
 {
 
 	JsonObj* obj = malloc(sizeof(JsonObj));
@@ -351,7 +352,7 @@ JsonObj* __parseObj(char* data)
 	return obj;
 }
 
-void __DictDestroyArr(JsonDict* item)
+static void __DictDestroyArr(JsonDict* item)
 {
 	dArr* arr = (dArr*)(item->value);
 	int len = dArrLenght(arr)-1;
@@ -370,7 +371,7 @@ void __DictDestroyArr(JsonDict* item)
 	dArrDestroy(arr);
 }
 
-void __DictDestroyObj(JsonObj* obj)
+static void __DictDestroyObj(JsonObj* obj)
 {
 	JsonDict* currentObj;
 	JsonDict* tmp;
@@ -396,7 +397,7 @@ void __DictDestroyObj(JsonObj* obj)
 	free(obj);
 }
 
-void JsonDestroyObj(JsonObj* obj)
+static void JsonDestroyObj(JsonObj* obj)
 {
 	__DictDestroyObj(obj);
 }
