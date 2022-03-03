@@ -12,10 +12,10 @@ a 3-header library for parse JSON file and interrogate it
 JsonOpen(char* JsonPath);
 
 **Create a JSON object**<br>
-JsonCreateObj(char* rawJsonData);
+JsonObj* obj = JsonCreateObj(char* rawJsonData);
 
 **Get item from object field name**<br>
-JsonGetDictItem(JsonObj* obj,char* fieldName);
+JsonDict* item = JsonGetDictItem(JsonObj* obj,char* fieldName);
 
 **JsonDict field**<br>
 - **hh** and **key** don't touch it
@@ -25,6 +25,13 @@ JsonGetDictItem(JsonObj* obj,char* fieldName);
     - JSTR for string
     - JFLT for float
 - **value** contains the pointer to data
+
+**Macro for obtain value**<br>
+you can use:
+- **INT_DFR**(v) for dereference an **integer** obtained by a JsonDict
+- **STR_DFR**(v) for dereference a **string** obtained by a JsonDict
+- **FLT_DFR**(v) for dereference a **float** obtained by a JsonDict
+- **ARR_DFR**(v) for dereference a **dArr** obtained by a JsonDict
 
 
 

@@ -32,7 +32,7 @@ int main()
 
 	JsonDict* onArr = JsonGetDictItem(arrObj, "data");
 
-	dArr* arr2 = (dArr*)onArr->value;
+	dArr* arr2 = ARR_DFR(onArr->value);
 	printf("%d", INT_DFR(arr2->data[2]));
 
 

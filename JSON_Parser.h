@@ -10,6 +10,7 @@
 
 #define INT_DFR(v) (*(int*)(v))
 #define STR_DFR(v) (char*)(v)
+#define ARR_DFR(v) (dArr*)(v)
 #define FLT_DFR(v) (*(float*)(v))
 
 
