@@ -17,16 +17,13 @@ struct mySt
 
 int main()
 {
-	//char* st = "{12";
-	//__isolateVal(&st);
-	//int n = atoi(st);
-	//printf("%d", n);
+	
 	char* content = JsonOpen("../x64/Debug/res/mappa.json");
 	JsonObj* obj = JsonCreateObj(content);
 
 	JsonDict* d = JsonGetDictItem(obj, "height");
 	printf("%d\n", INT_DFR(d->value));
-	//return 0;
+	
 	JsonDict* data = JsonGetDictItem(obj, "layers");
 	dArr* dataArr = (dArr*)(data->value);
 
