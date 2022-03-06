@@ -368,7 +368,7 @@ static void __DictDestroyArr(JsonDict* item)
 			__DictDestroyArr((JsonDict*)arr->data[i]);
 		}
 	}
-	dArrDestroy(arr);
+	dArrDestroy(&arr);
 }
 
 static void __DictDestroyObj(JsonObj* obj)

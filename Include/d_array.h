@@ -1,6 +1,7 @@
 #pragma once
 #include<stdlib.h>
 #include<string.h>
+#include"JSON_Parser.h"
 
 typedef struct dArr
 {
@@ -19,18 +20,20 @@ dArr* dArrCreate()
 	if (arr)
 	{
 		arr->lastIndex = -1;
-		arr->size = 10;
-		arr->padding = 5;
+		arr->size = 3;
+		arr->padding = 3;
 		arr->data = (void**)malloc(arr->size * sizeof(void*));
 		arr->valueTypes = (char*)malloc(100*sizeof(char));
 		return arr;
 	}
 }
 
-void dArrDestroy(dArr* arr)
+void dArrDestroy(dArr** arr)
 {
-	free(*(arr->data));
-	free(arr);
+	dArr* ptr = *arr;
+	free(ptr->data);
+	free(ptr);
+	*arr = NULL;
 }
 
 int dArrLenght(dArr* arr)
@@ -61,8 +64,8 @@ void dArrAppend(dArr* arr, void* obj,char type)
 		arr->valueTypes = realloc(arr->valueTypes, sizeof(char) * newSize);*/
 		void** dtmp = (void**)malloc(sizeof(void*) * newSize);
 		char* vtmp = (char*)malloc(sizeof(char*) * newSize);
-		memcpy(dtmp, arr->data, sizeof(void*) * arr->lastIndex+1);
-		memcpy(vtmp, arr->valueTypes, sizeof(char*) * arr->lastIndex+1);
+		memcpy(dtmp, arr->data, sizeof(void*) * arr->size);
+		memcpy(vtmp, arr->valueTypes, sizeof(char*) * arr->size);
 
 		free(arr->data);
 		free(arr->valueTypes);
@@ -71,6 +74,7 @@ void dArrAppend(dArr* arr, void* obj,char type)
 		arr->valueTypes = vtmp;
 
 		arr->size += arr->padding;
+
 
 
 		
