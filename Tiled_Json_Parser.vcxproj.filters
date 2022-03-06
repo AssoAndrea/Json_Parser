@@ -20,13 +20,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="JSON_Parser.h">
+    <ClInclude Include="Include\JSON_Parser.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="d_array.h">
+    <ClInclude Include="Include\d_array.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="uthash.h">
+    <ClInclude Include="Include\uthash.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>

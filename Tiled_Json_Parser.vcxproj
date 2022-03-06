@@ -116,6 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\andre\Desktop\Lezione\C\TiledParser\Tiled_Json_Parser\Tiled_Json_Parser\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,9 +143,9 @@
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="d_array.h" />
-    <ClInclude Include="JSON_Parser.h" />
-    <ClInclude Include="uthash.h" />
+    <ClInclude Include="Include\d_array.h" />
+    <ClInclude Include="Include\JSON_Parser.h" />
+    <ClInclude Include="Include\uthash.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\x64\Debug\res\mappa.json">
