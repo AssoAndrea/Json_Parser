@@ -39,10 +39,10 @@ typedef struct JsonObj
 
 
 
-static JsonObj* __parseObj(char* data);
 
 static void __processKv(char* kv, JsonObj* obj);
 static void __DictDestroyObj(JsonObj* obj);
+static JsonObj* __parseObj(char* data);
 
 static void __isolateVal(char** str)
 {
@@ -71,7 +71,7 @@ static char* __isolateString(char* str)
 	{
 		return str;
 	}
-	char* res = malloc(len + 1);
+	char* res = (char*)malloc(len + 1);
 	memcpy(res, sPtr+1, len);
 	res[len] = '\0';
 	return res;
@@ -135,7 +135,7 @@ static char* __jsonMakeOneLine(const char* content)
 {
 	int nObj = 0;
 	int len = strlen(content);
-	char* newStr = malloc(len);
+	char* newStr = (char*)malloc(len);
 	if (!newStr)
 	{
 		perror("unable to allocate memory");
@@ -166,7 +166,7 @@ static char* __jsonMakeOneLine(const char* content)
 		}
 
 	}
-	char* finalString = malloc(newIndex + 1);
+	char* finalString = (char*)malloc(newIndex + 1);
 	if (!finalString)
 	{
 		perror("unable to allocate memory");
@@ -241,7 +241,7 @@ static dArr* __processArray(char* arr)
 			else if (strchr(token, ((int)'.'))) //float
 			{
 
-				float* val = malloc(sizeof(float));
+				float* val = (float*)malloc(sizeof(float));
 				*val = (float)atof(token);
 				dArrAppend(ret, val,JFLT);
 			}
@@ -252,7 +252,7 @@ static dArr* __processArray(char* arr)
 			}
 			else //int
 			{
-				int* val = malloc(sizeof(int));
+				int* val = (int*)malloc(sizeof(int));
 				*val = atoi(token);
 				dArrAppend(ret, val,JINT);
 			}
@@ -270,7 +270,7 @@ static dArr* __processArray(char* arr)
 static void __processKv(char* kv, JsonObj* obj)
 {
 
-	JsonDict* toAdd = malloc(sizeof(JsonDict));
+	JsonDict* toAdd = (JsonDict*)malloc(sizeof(JsonDict));
 
 	char* context;
 	char* token = strtok_s(kv, "@", &context);
@@ -292,7 +292,7 @@ static void __processKv(char* kv, JsonObj* obj)
 
 
 		}
-		else if (token[0] == "{") //object
+		else if (token[0] == '{') //object
 		{
 			printf("not implemented");
 			toAdd->type = JOBJ;
@@ -306,14 +306,14 @@ static void __processKv(char* kv, JsonObj* obj)
 		}
 		else if (strchr(token, ((int)'.')))//float
 		{
-			float* val = malloc(sizeof(float));
+			float* val = (float*)malloc(sizeof(float));
 			*val = (float)atof(token);
 			toAdd->value = val;
 			toAdd->type = JFLT;
 		}
 		else //int
 		{
-			int* val = malloc(sizeof(int));
+			int* val = (int*)malloc(sizeof(int));
 			__isolateVal(&token);
 			*val = atoi(token);
 			toAdd->value = val;
@@ -330,7 +330,7 @@ static void __processKv(char* kv, JsonObj* obj)
 static JsonObj* __parseObj(char* data)
 {
 
-	JsonObj* obj = malloc(sizeof(JsonObj));
+	JsonObj* obj = (JsonObj*)malloc(sizeof(JsonObj));
 	obj->dictionary = NULL;
 	__reformatObj(data);
 
@@ -365,7 +365,7 @@ static void __DictDestroyArr(JsonDict* item)
 		else if(arr->valueTypes[i] == JARR)
 		{
 			printf("ciao");
-			__DictDestroyArr((dArr*)arr->data[i]);
+			__DictDestroyArr((JsonDict*)arr->data[i]);
 		}
 	}
 	dArrDestroy(arr);

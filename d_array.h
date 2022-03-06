@@ -15,13 +15,13 @@ typedef struct dArr
 
 dArr* dArrCreate()
 {
-	dArr* arr = malloc(sizeof(dArr));
+	dArr* arr = (dArr*)malloc(sizeof(dArr));
 	if (arr)
 	{
 		arr->lastIndex = -1;
 		arr->size = 10;
 		arr->padding = 5;
-		arr->data = malloc(arr->size * sizeof(void*));
+		arr->data = (void**)malloc(arr->size * sizeof(void*));
 		arr->valueTypes = (char*)malloc(100*sizeof(char));
 		return arr;
 	}
@@ -59,8 +59,8 @@ void dArrAppend(dArr* arr, void* obj,char type)
 
 		/*arr->data = realloc(arr->data, sizeof(void*) * newSize);
 		arr->valueTypes = realloc(arr->valueTypes, sizeof(char) * newSize);*/
-		void** dtmp = malloc(sizeof(void*) * newSize);
-		char* vtmp = malloc(sizeof(char*) * newSize);
+		void** dtmp = (void**)malloc(sizeof(void*) * newSize);
+		char* vtmp = (char*)malloc(sizeof(char*) * newSize);
 		memcpy(dtmp, arr->data, sizeof(void*) * arr->lastIndex+1);
 		memcpy(vtmp, arr->valueTypes, sizeof(char*) * arr->lastIndex+1);
 
