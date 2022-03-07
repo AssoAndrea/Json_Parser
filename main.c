@@ -9,17 +9,38 @@
 #define RES_PATH "../x64/Debug/res/"
 
 
+int* CreateInt(int value)
+{
+	int* ptr = (int*)malloc(sizeof(int));
+	*ptr = value;
+	return ptr;
+}
+
 int main()
 {
-	/*dArr* arr = dArrCreate();
-	int* n1 = (int*)malloc(sizeof(int));
+	dArr* arr = dArrCreate();
+	/*int* n1 = (int*)malloc(sizeof(int));
 	int* n2 = (int*)malloc(sizeof(int));
+	int* n3 = (int*)malloc(sizeof(int));
 	*n1 = 1;
-	*n2 = 1;
+	*n2 = 2;
+	*n3 = 3;
 	dArrAppend(arr, n1, JINT);
 	dArrAppend(arr, n2, JINT);
-	printf("n1=%d\n", INT_DFR(arr->data[0]));
-	printf("n1=%d\n", INT_DFR(arr->data[1]));*/
+	dArrAppend(arr, n3, JINT);
+	dArrRemoveAt(arr, 2);*/
+
+	for (size_t i = 0; i < 10; i++)
+	{
+		int* v = CreateInt(i);
+		dArrAppend(arr, v, JINT);
+	}
+	dArrRemoveAt(arr, 5);
+	for (size_t i = 0; i < 9; i++)
+	{
+		printf("%d = %d\n", i, INT_DFR(arr->data[i]));
+	}
+	
 
 	
 	char* content = JsonOpen("../x64/Debug/res/mappa.json");
@@ -46,7 +67,7 @@ int main()
 
 	JsonDestroyObj(obj);
 
-	JsonClose(content);
+	JsonClose(&content);
 	return 0;
 }
 

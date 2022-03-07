@@ -421,13 +421,13 @@ static char* JsonOpen(const char* path)
 	fopen_s(&f, path, "r");
 	if (!f)
 	{
-		perror("file non aperto");
+		perror("file non aperto\n");
 		return NULL;
 	}
 	fseek(f, 0, SEEK_END);
 	int size = ftell(f);
 	rewind(f);
-	char* fileContent = (char *)malloc(size + 1);
+	char* fileContent = (char *)malloc(size+1);
 	if (fileContent)
 	{
 		fread(fileContent, size, 1, f);
@@ -442,9 +442,10 @@ static char* JsonOpen(const char* path)
 	}
 }
 
-static void JsonClose(char* content)
+static void JsonClose(char** content)
 {
-	free(content);
+	free(*content);
+	*content = NULL;
 }
 
 

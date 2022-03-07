@@ -43,11 +43,12 @@ int dArrLenght(dArr* arr)
 
 void dArrRemoveAt(dArr* arr, int index)
 {
+	free(arr->data[index]);
+
 	for (size_t i = index; i < arr->lastIndex; i++)
 	{
 		arr->data[i] = arr->data[i + 1];
 	}
-	//free(arr->data[arr->lastIndex]);
 	arr->lastIndex--;
 }
 
