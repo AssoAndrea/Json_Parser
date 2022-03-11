@@ -18,35 +18,6 @@ int* CreateInt(int value)
 
 int main()
 {
-
-	char* t1 = "{\"test\"@10";
-	char* tptr = malloc(strlen(t1));
-	strcpy(tptr, t1);
-	JsonObj* o = (JsonObj*)malloc(sizeof(JsonObj));
-	o->dictionary = NULL;
-
-	char* expectedKey = "test";
-	int expectedValue = 10;
-	__processKv(tptr, o);
-
-	JsonDict* item;
-	HASH_FIND_STR(o->dictionary, "test", item);
-
-	return 0;
-	dArr* arr = dArrCreate();
-
-	for (size_t i = 0; i < 10; i++)
-	{
-		int* v = CreateInt(i);
-		dArrAppend(arr, v, JINT);
-	}
-	dArrRemoveAt(arr, 5);
-	for (size_t i = 0; i < 9; i++)
-	{
-		printf("%d = %d\n", i, INT_DFR(arr->data[i]));
-	}
-	
-
 	
 	char* content = JsonOpen("../x64/Debug/res/mappa.json");
 	JsonObj* obj = JsonCreateObj(content);
@@ -65,7 +36,7 @@ int main()
 	dArr* arr2 = ARR_DFR(onArr->value);
 	for (size_t i = 0; i < 40; i++)
 	{
-		printf("%d", INT_DFR(arr2->data[i]));
+		printf("%d,", INT_DFR(arr2->data[i]));
 
 	}
 
