@@ -63,9 +63,9 @@ static void __isolateVal(char** str)
 
 static char* __isolateString(char* str)
 {
-
 	char* sPtr = strchr(str, ((int)'"'));
 	char* ePtr = strrchr(str, ((int)'"'));
+
 	int len = (ePtr - sPtr) - 1;
 	if (len<0)
 	{
@@ -124,7 +124,6 @@ static JsonDict* JsonGetDictItem(JsonObj* obj,char* key)
 	{
 		return NULL;
 	}
-	//printf("dictkey :%s\n",obj->dictionary->key);
 
 	HASH_FIND_STR(obj->dictionary,key, res);
 	return res;

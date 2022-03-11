@@ -18,17 +18,22 @@ int* CreateInt(int value)
 
 int main()
 {
+
+	char* t1 = "{\"test\"@10";
+	char* tptr = malloc(strlen(t1));
+	strcpy(tptr, t1);
+	JsonObj* o = (JsonObj*)malloc(sizeof(JsonObj));
+	o->dictionary = NULL;
+
+	char* expectedKey = "test";
+	int expectedValue = 10;
+	__processKv(tptr, o);
+
+	JsonDict* item;
+	HASH_FIND_STR(o->dictionary, "test", item);
+
+	return 0;
 	dArr* arr = dArrCreate();
-	/*int* n1 = (int*)malloc(sizeof(int));
-	int* n2 = (int*)malloc(sizeof(int));
-	int* n3 = (int*)malloc(sizeof(int));
-	*n1 = 1;
-	*n2 = 2;
-	*n3 = 3;
-	dArrAppend(arr, n1, JINT);
-	dArrAppend(arr, n2, JINT);
-	dArrAppend(arr, n3, JINT);
-	dArrRemoveAt(arr, 2);*/
 
 	for (size_t i = 0; i < 10; i++)
 	{
