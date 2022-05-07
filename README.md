@@ -36,6 +36,8 @@ you can use:
 - **FLT_DFR**(v) for dereference a **float** obtained by a JsonDict
 - **ARR_DFR**(v) for dereference a **dArr** obtained by a JsonDict
 
+# you can read the main.c for an example
+
 
 
 
