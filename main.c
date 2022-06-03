@@ -9,13 +9,6 @@
 #define RES_PATH "../x64/Debug/res/"
 
 
-int* CreateInt(int value)
-{
-	int* ptr = (int*)malloc(sizeof(int));
-	*ptr = value;
-	return ptr;
-}
-
 int main()
 {
 	
